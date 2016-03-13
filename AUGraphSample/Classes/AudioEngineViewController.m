@@ -1,5 +1,5 @@
 //
-//  EffectViewController.m
+//  AudioEngineViewController.m
 //  AUGraphSample
 //
 //  Created by LoopSessions on 2016/02/25.
@@ -7,18 +7,18 @@
 //
 
 #import <AVFoundation/AVFoundation.h>
-#import "EffectViewController.h"
-#import "EffectAudioIO.h"
+#import "AudioEngineViewController.h"
+#import "AudioEngineIO.h"
 
-@interface EffectViewController ()
+@interface AudioEngineViewController ()
 {
-	EffectAudioIO *_audioIO;
+	AudioEngineIO *_audioIO;
 	
 	UIButton *_buttonPlay;
 }
 @end
 
-@implementation EffectViewController
+@implementation AudioEngineViewController
 
 - (id)init
 {
@@ -26,7 +26,7 @@
 	if (self) {
 		[self setAudioSessionActive];
 		
-		_audioIO = [[EffectAudioIO alloc] init];
+		_audioIO = [[AudioEngineIO alloc] init];
 	}
 	return self;
 }
@@ -62,41 +62,32 @@
 	[_buttonPlay addTarget:self action:@selector(buttonPlayAct:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:_buttonPlay];
 	
-	UISlider *sliderParam[2];
-	for (int i = 0; i < 2; i++) {
+	UISlider *sliderParam[4];
+	for (int i = 0; i < 4; i++) {
 		sliderParam[i] = [[UISlider alloc] init];
 		sliderParam[i].tag = 1000 + i;
 		sliderParam[i].frame = CGRectMake(20.0, 100.0 + 80.0 * i, fWidth - 40.0, 60.0);
 		[sliderParam[i] addTarget:self action:@selector(sliderParamChanged:) forControlEvents:UIControlEventValueChanged];
 		[self.view addSubview:sliderParam[i]];
 	}
-
+	
 	
 	NSString *strFileName = AUDIO_SAMPLE_FILE_NAME;
 	NSString *strFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], strFileName];
 	
-	NSURL *urlFile = [NSURL fileURLWithPath:strFilePath];
-	
-	SInt64 lFileLen = [_audioIO initAudioFile:urlFile];
-	if (lFileLen == -1) {
-		NSLog(@"[Error]It's failed in opening file.");
-		return;
-	}
-	OSStatus ret = [_audioIO initAUGraph];
+	OSStatus ret = [_audioIO initAVAudio:strFilePath];
 	if (ret) {
-		NSLog(@"[Error]It's failed in setting audio.");
-		return;
+		NSLog(@"[Error]initAVAudio = %d", (int)ret);
 	}
 	
 	
 	// スライダーの範囲、初期位置をセット
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 4; i++) {
 		AudioUnitParameterInfo paramInfo = [_audioIO getParamInfo:i];
 		sliderParam[i].minimumValue = paramInfo.minValue;
 		sliderParam[i].maximumValue = paramInfo.maxValue;
 		sliderParam[i].value = paramInfo.defaultValue;
 	}
-	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -144,8 +135,8 @@
 - (void)buttonPlayAct:(UIButton *)sender
 {
 	NSArray *arTitle = @[@"Start", @"Stop"];
-	if ([_audioIO isRunning] == false) {
-		[_audioIO start];
+	if ([_audioIO isPlaying] == NO) {
+		[_audioIO play];
 		[sender setTitle:arTitle[1] forState:UIControlStateNormal];
 	} else {
 		[_audioIO stop];

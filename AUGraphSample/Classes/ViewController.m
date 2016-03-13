@@ -10,6 +10,7 @@
 #import "SimpleViewController.h"
 #import "TimeStretchViewController.h"
 #import "EffectViewController.h"
+#import "AudioEngineViewController.h"
 
 @interface ViewController ()
 
@@ -24,12 +25,13 @@
 	CGFloat fWidth = [[UIScreen mainScreen] bounds].size.width;
 //	CGFloat fHeight = [[UIScreen mainScreen] bounds].size.height;
 	
-	NSArray *arTitle = @[@"Simple", @"Time Stretch", @"Effect"];
-	UIButton *button[3];
-	for (int i = 0; i < 3; i++) {
+	NSArray *arTitle = @[@"Simple", @"Time Stretch", @"Effect", @"AVAudioEngine"];
+	NSInteger iCount = [arTitle count];
+	UIButton *button[iCount];
+	for (int i = 0; i < iCount; i++) {
 		button[i] = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 		button[i].tag = 1000 + i;
-		button[i].frame = CGRectMake((fWidth - 120.0) * 0.5, 100.0 + 80.0 * i, 120.0, 60.0);
+		button[i].frame = CGRectMake((fWidth - 180.0) * 0.5, 100.0 + 80.0 * i, 180.0, 60.0);
 		[button[i] setTitle:arTitle[i] forState:UIControlStateNormal];
 		[button[i] addTarget:self action:@selector(buttonAct:) forControlEvents:UIControlEventTouchUpInside];
 		[self.view addSubview:button[i]];
@@ -84,9 +86,13 @@
 		TimeStretchViewController *viewController = [[[TimeStretchViewController alloc] init] autorelease];
 		viewController.title = @"Time Stretch";
 		[self.navigationController pushViewController:viewController animated:YES];
-	} else {
+	} else if (iIndex == 2) {
 		EffectViewController *viewController = [[[EffectViewController alloc] init] autorelease];
 		viewController.title = @"Effect";
+		[self.navigationController pushViewController:viewController animated:YES];
+	} else {
+		AudioEngineViewController *viewController = [[[AudioEngineViewController alloc] init] autorelease];
+		viewController.title = @"AVAudioEngine";
 		[self.navigationController pushViewController:viewController animated:YES];
 	}
 }

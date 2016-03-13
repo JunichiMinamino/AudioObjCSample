@@ -1,5 +1,5 @@
 //
-//  EffectAudioIO.h
+//  AudioEngineIO.h
 //  AUGraphSample
 //
 //  Created by LoopSessions on 2016/02/25.
@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EffectAudioIO : NSObject
+@interface AudioEngineIO : NSObject
 
-- (SInt64)initAudioFile:(NSURL *)fileURL;
-- (OSStatus)initAUGraph;
+- (OSStatus)initAVAudio:(NSString *)strFilePath;
 
-- (Boolean)isRunning;
-- (void)start;
+- (BOOL)isPlaying;
+- (void)play;
 - (void)stop;
 
 - (AudioUnitParameterInfo)getParamInfo:(NSInteger)iIndex;

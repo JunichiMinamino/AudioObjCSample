@@ -373,12 +373,12 @@ OSStatus renderCallback(void *inRefCon,
 	return _paramInfo[iIndex];
 }
 
-- (Float32)playbackRate
+- (Float32)effectRate
 {
 	return [self valueForParameter:_paramId];
 }
 
-- (void)setPlaybackRate:(NSInteger)iIndex value:(Float32)value
+- (void)setEffectRate:(NSInteger)iIndex value:(Float32)value
 {
 	[self setValue:iIndex value:value forParameter:_paramId min:_paramInfo[iIndex].minValue max:_paramInfo[iIndex].maxValue];
 }
