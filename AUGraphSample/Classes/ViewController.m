@@ -35,6 +35,7 @@
 		[button[i] setTitle:arTitle[i] forState:UIControlStateNormal];
 		[button[i] addTarget:self action:@selector(buttonAct:) forControlEvents:UIControlEventTouchUpInside];
 		[self.view addSubview:button[i]];
+		[button[i] release];
 	}
 	
 }

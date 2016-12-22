@@ -38,6 +38,7 @@
 	AVAudioUnitTimePitch *_audioUnitTimePitch;
 	AVAudioUnitVarispeed *_audioUnitVarispeed;
 	
+	UInt32 _numOfParams;
 	AudioUnitParameterID _paramId;
 	AudioUnitParameterInfo *_paramInfo;
 }
@@ -109,9 +110,7 @@
 	[_audioEngine connect:_audioUnitDelay to:_audioUnitReverb format:_audioFile.processingFormat];
 	[_audioEngine connect:_audioUnitReverb to:_audioEngine.mainMixerNode format:_audioFile.processingFormat];
 	*/
-	[_audioEngine connect:_audioPlayerNode to:_audioUnitEq format:_audioFile.processingFormat];
-	[_audioEngine connect:_audioUnitEq to:_audioUnitDelay format:_audioFile.processingFormat];
-	[_audioEngine connect:_audioUnitDelay to:_audioUnitReverb format:_audioFile.processingFormat];
+	[_audioEngine connect:_audioPlayerNode to:_audioUnitReverb format:_audioFile.processingFormat];
 	[_audioEngine connect:_audioUnitReverb to:_audioEngine.mainMixerNode format:_audioFile.processingFormat];
 	
 	
@@ -155,11 +154,13 @@
 	
 	
 	// パラメータ取得（詳細編）
-	[self initAudioUnitParameter:_audioUnitDelay.audioUnit];
 	/*
+	[self initAudioUnitParameter:_audioUnitDelay.audioUnit];
 	[self initAudioUnitParameter:_audioUnitDistortion.audioUnit];
 	[self initAudioUnitParameter:_audioUnitEq.audioUnit];
+	*/
 	[self initAudioUnitParameter:_audioUnitReverb.audioUnit];
+	/*
 	[self initAudioUnitParameter:_audioUnitTimePitch.audioUnit];
 	[self initAudioUnitParameter:_audioUnitVarispeed.audioUnit];
 	[self initAudioUnitParameter:_audioUnitSampler.audioUnit];
@@ -208,8 +209,9 @@
 							 &size,
 							 NULL);
 	
-	int numOfParams = size / sizeof(AudioUnitParameterID);
+	UInt32 numOfParams = size / sizeof(AudioUnitParameterID);
 	NSLog(@"numOfParams = %d", numOfParams);
+	_numOfParams = numOfParams;
 	
 	// paramList の各IDを取得
 	AudioUnitParameterID paramList[numOfParams];
@@ -250,29 +252,34 @@
 	}
 }
 
+- (NSUInteger)getParamNum
+{
+	return _numOfParams;
+}
+
 - (AudioUnitParameterInfo)getParamInfo:(NSInteger)iIndex
 {
 	return _paramInfo[iIndex];
 }
 
 
-// for AVAudioUnitDelay
+// for AVAudioUnitReverb
 - (Float32)effectRate
 {
 	return [self valueForParameter:_paramId];
 }
 
-// for AVAudioUnitDelay
+// for AVAudioUnitReverb
 - (void)setEffectRate:(NSInteger)iIndex value:(Float32)value
 {
 	[self setValue:iIndex value:value forParameter:_paramId min:_paramInfo[iIndex].minValue max:_paramInfo[iIndex].maxValue];
 }
 
-// for AVAudioUnitDelay
+// for AVAudioUnitReverb
 - (Float32)valueForParameter:(int)parameter
 {
 	Float32 value = 0.0;
-	OSStatus rt = AudioUnitGetParameter(_audioUnitDelay.audioUnit,
+	OSStatus rt = AudioUnitGetParameter(_audioUnitReverb.audioUnit,
 										parameter,
 										kAudioUnitScope_Global,
 										0,
@@ -284,14 +291,14 @@
 	return value;
 }
 
-// for AVAudioUnitDelay
+// for AVAudioUnitReverb
 - (void)setValue:(NSInteger)iIndex value:(Float32)value forParameter:(AudioUnitParameterID)parameter min:(Float32)min max:(Float32)max
 {
 	if (value < min || value > max) {
 		NSLog(@"Invalid value(%f)<%f - %f> for parameter(%d). Ignored.", value, min, max, (unsigned int)parameter);
 		return;
 	}
-	OSStatus rt = AudioUnitSetParameter(_audioUnitDelay.audioUnit,
+	OSStatus rt = AudioUnitSetParameter(_audioUnitReverb.audioUnit,
 										parameter,
 										kAudioUnitScope_Global,
 										0,

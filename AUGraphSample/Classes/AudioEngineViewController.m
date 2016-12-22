@@ -57,19 +57,14 @@
 	CGFloat fHeight = [[UIScreen mainScreen] bounds].size.height;
 	
 	_buttonPlay = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-	_buttonPlay.frame = CGRectMake((fWidth - 120.0) * 0.5, fHeight - 100.0, 120.0, 60.0);
+	_buttonPlay.frame = CGRectMake(fWidth - 120.0, fHeight - 90.0, 100.0, 40.0);
 	[_buttonPlay setTitle:@"Start" forState:UIControlStateNormal];
 	[_buttonPlay addTarget:self action:@selector(buttonPlayAct:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:_buttonPlay];
-	
-	UISlider *sliderParam[4];
-	for (int i = 0; i < 4; i++) {
-		sliderParam[i] = [[UISlider alloc] init];
-		sliderParam[i].tag = 1000 + i;
-		sliderParam[i].frame = CGRectMake(20.0, 100.0 + 80.0 * i, fWidth - 40.0, 60.0);
-		[sliderParam[i] addTarget:self action:@selector(sliderParamChanged:) forControlEvents:UIControlEventValueChanged];
-		[self.view addSubview:sliderParam[i]];
-	}
+	_buttonPlay.layer.borderColor = [[UIColor whiteColor] CGColor];
+	_buttonPlay.layer.borderWidth = 1.0;
+	_buttonPlay.layer.cornerRadius = 6.0;
+	_buttonPlay.clipsToBounds = YES;
 	
 	
 	NSString *strFileName = AUDIO_SAMPLE_FILE_NAME;
@@ -80,10 +75,31 @@
 		NSLog(@"[Error]initAVAudio = %d", (int)ret);
 	}
 	
+	NSInteger iParamNum = [_audioIO getParamNum];
 	
-	// スライダーの範囲、初期位置をセット
-	for (int i = 0; i < 4; i++) {
+	UILabel *labelParam[iParamNum];
+	UISlider *sliderParam[iParamNum];
+	for (int i = 0; i < iParamNum; i++) {
+		labelParam[i] = [[UILabel alloc] init];
+		labelParam[i].frame = CGRectMake(20.0, 80.0 + 85.0 * i, fWidth - 40.0, 30.0);
+		labelParam[i].textColor = [UIColor whiteColor];
+		[self.view addSubview:labelParam[i]];
+		[labelParam[i] release];
+		
+		sliderParam[i] = [[UISlider alloc] init];
+		sliderParam[i].tag = 1000 + i;
+		sliderParam[i].frame = CGRectMake(30.0, 110.0 + 85.0 * i, fWidth - 60.0, 40.0);
+		[sliderParam[i] addTarget:self action:@selector(sliderParamChanged:) forControlEvents:UIControlEventValueChanged];
+		[self.view addSubview:sliderParam[i]];
+		[sliderParam[i] release];
+	}
+	
+	// パラメータ名、スライダーの範囲、初期位置をセット
+	for (int i = 0; i < iParamNum; i++) {
 		AudioUnitParameterInfo paramInfo = [_audioIO getParamInfo:i];
+		
+		labelParam[i].text = [NSString stringWithCString:paramInfo.name encoding:NSUTF8StringEncoding];
+		
 		sliderParam[i].minimumValue = paramInfo.minValue;
 		sliderParam[i].maximumValue = paramInfo.maxValue;
 		sliderParam[i].value = paramInfo.defaultValue;
