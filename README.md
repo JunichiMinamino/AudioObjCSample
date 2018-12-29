@@ -1,2 +1,2 @@
-# AUGraphSample
-Sample for AUGraph
+# iOSAudioSample
+Sample for iOS Audio (AudioEngine, AUGraph)
