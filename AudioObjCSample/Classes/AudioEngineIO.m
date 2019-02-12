@@ -39,7 +39,7 @@
 	AVAudioUnitVarispeed *_audioUnitVarispeed;
 	
 	UInt32 _numOfParams;
-	AudioUnitParameterID _paramId;
+	AudioUnitParameterID *_paramId;
 	AudioUnitParameterInfo *_paramInfo;
 }
 @end
@@ -57,6 +57,7 @@
 
 - (void)dealloc
 {
+	free(_paramId);
 	free(_paramInfo);
 	
 	[_audioUnitDelay release];
@@ -222,11 +223,12 @@
 						 paramList,
 						 &size);
 	
+	_paramId = (AudioUnitParameterID *)malloc(numOfParams * sizeof(AudioUnitParameterID));
 	_paramInfo = (AudioUnitParameterInfo *)malloc(numOfParams * sizeof(AudioUnitParameterInfo));
 	
 	for (int i = 0; i < numOfParams; i++) {
 		NSLog(@"paramList[%d] = %d", i, (unsigned int)paramList[i]);
-		_paramId = paramList[i];
+		_paramId[i] = paramList[i];
 		
 		// 各IDのパラメータを取得
 		size = sizeof(_paramInfo[i]);
@@ -262,17 +264,18 @@
 	return _paramInfo[iIndex];
 }
 
-
+/*
 // for AVAudioUnitReverb
-- (Float32)effectRate
+- (Float32)effectRate:(NSInteger)iIndex
 {
-	return [self valueForParameter:_paramId];
+	return [self valueForParameter:_paramId[iIndex]];
 }
+*/
 
 // for AVAudioUnitReverb
 - (void)setEffectRate:(NSInteger)iIndex value:(Float32)value
 {
-	[self setValue:iIndex value:value forParameter:_paramId min:_paramInfo[iIndex].minValue max:_paramInfo[iIndex].maxValue];
+	[self setValue:iIndex value:value forParameter:_paramId[iIndex] min:_paramInfo[iIndex].minValue max:_paramInfo[iIndex].maxValue];
 }
 
 // for AVAudioUnitReverb
