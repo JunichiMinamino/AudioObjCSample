@@ -11,6 +11,8 @@
 #import "TimeStretchViewController.h"
 #import "EffectViewController.h"
 #import "AudioEngineViewController.h"
+#import "TimePitchViewController.h"
+//#import "OfflineRenderViewController.h"
 
 @interface ViewController ()
 
@@ -25,7 +27,7 @@
 	CGFloat fWidth = [[UIScreen mainScreen] bounds].size.width;
 //	CGFloat fHeight = [[UIScreen mainScreen] bounds].size.height;
 	
-	NSArray *arTitle = @[@"Simple", @"Time Stretch", @"Effect", @"AVAudioEngine"];
+	NSArray *arTitle = @[@"Simple", @"Time Stretch", @"Effect", @"AVAudioEngine", @"TimePitch"/*, @"OfflineRender"*/];
 	NSInteger iCount = [arTitle count];
 	UIButton *button[iCount];
 	for (int i = 0; i < iCount; i++) {
@@ -91,10 +93,20 @@
 		EffectViewController *viewController = [[[EffectViewController alloc] init] autorelease];
 		viewController.title = @"Effect";
 		[self.navigationController pushViewController:viewController animated:YES];
-	} else {
+	} else if (iIndex == 3) {
 		AudioEngineViewController *viewController = [[[AudioEngineViewController alloc] init] autorelease];
 		viewController.title = @"AVAudioEngine";
 		[self.navigationController pushViewController:viewController animated:YES];
+	} else if (iIndex == 4) {
+		TimePitchViewController *viewController = [[[TimePitchViewController alloc] init] autorelease];
+		viewController.title = @"TimePitch";
+		[self.navigationController pushViewController:viewController animated:YES];
+	} else {
+		/*
+		OfflineRenderViewController *viewController = [[[OfflineRenderViewController alloc] init] autorelease];
+		viewController.title = @"OfflineRender";
+		[self.navigationController pushViewController:viewController animated:YES];
+		*/
 	}
 }
 

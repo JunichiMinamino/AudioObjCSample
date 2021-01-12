@@ -24,6 +24,8 @@
 		BC8F66931C82A77A00FEFE89 /* EffectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F66911C82A77A00FEFE89 /* EffectViewController.m */; };
 		BC8F66981C845EBE00FEFE89 /* AudioEngineIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F66951C845EBE00FEFE89 /* AudioEngineIO.m */; };
 		BC8F66991C845EBE00FEFE89 /* AudioEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F66971C845EBE00FEFE89 /* AudioEngineViewController.m */; };
+		BCA4329621EB7029008ACF18 /* TimePitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA4329221EB7028008ACF18 /* TimePitchViewController.m */; };
+		BCA4329721EB7029008ACF18 /* TimePitchAudioIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA4329421EB7029008ACF18 /* TimePitchAudioIO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,10 @@
 		BC8F66951C845EBE00FEFE89 /* AudioEngineIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEngineIO.m; sourceTree = "<group>"; };
 		BC8F66961C845EBE00FEFE89 /* AudioEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEngineViewController.h; sourceTree = "<group>"; };
 		BC8F66971C845EBE00FEFE89 /* AudioEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEngineViewController.m; sourceTree = "<group>"; };
+		BCA4329221EB7028008ACF18 /* TimePitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePitchViewController.m; sourceTree = "<group>"; };
+		BCA4329321EB7028008ACF18 /* TimePitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePitchViewController.h; sourceTree = "<group>"; };
+		BCA4329421EB7029008ACF18 /* TimePitchAudioIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePitchAudioIO.m; sourceTree = "<group>"; };
+		BCA4329521EB7029008ACF18 /* TimePitchAudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePitchAudioIO.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,10 @@
 				BC8F66971C845EBE00FEFE89 /* AudioEngineViewController.m */,
 				BC8F66941C845EBE00FEFE89 /* AudioEngineIO.h */,
 				BC8F66951C845EBE00FEFE89 /* AudioEngineIO.m */,
+				BCA4329321EB7028008ACF18 /* TimePitchViewController.h */,
+				BCA4329221EB7028008ACF18 /* TimePitchViewController.m */,
+				BCA4329521EB7029008ACF18 /* TimePitchAudioIO.h */,
+				BCA4329421EB7029008ACF18 /* TimePitchAudioIO.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -174,7 +184,7 @@
 		BC8F664F1C7F273900FEFE89 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = LoopSessions;
 				TargetAttributes = {
 					BC8F66561C7F273900FEFE89 = {
@@ -184,7 +194,7 @@
 			};
 			buildConfigurationList = BC8F66521C7F273900FEFE89 /* Build configuration list for PBXProject "AudioObjCSample" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -225,7 +235,9 @@
 				BC8F66761C7F279200FEFE89 /* AppDelegate.m in Sources */,
 				BC8F66981C845EBE00FEFE89 /* AudioEngineIO.m in Sources */,
 				BC8F667B1C7F29F000FEFE89 /* SimpleAudioIO.m in Sources */,
+				BCA4329621EB7029008ACF18 /* TimePitchViewController.m in Sources */,
 				BC8F66931C82A77A00FEFE89 /* EffectViewController.m in Sources */,
+				BCA4329721EB7029008ACF18 /* TimePitchAudioIO.m in Sources */,
 				BC8F668D1C7FD3D000FEFE89 /* TimeStretchViewController.m in Sources */,
 				BC8F665C1C7F273900FEFE89 /* main.m in Sources */,
 				BC8F668C1C7FD3D000FEFE89 /* TimeStretchAudioIO.m in Sources */,
@@ -259,6 +271,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -276,6 +289,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -301,7 +315,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -312,6 +326,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -329,6 +344,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -348,7 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
