@@ -37,7 +37,7 @@
 - (void)dealloc
 {
 	free(_paramInfo);
-	
+	/*
 	[_audioUnitTimePitch release];
 	
 	[_audioPlayerNode release];
@@ -45,6 +45,7 @@
 	[_audioEngine release];
 	
 	[super dealloc];
+	*/
 }
 
 - (OSStatus)initAVAudio:(NSString *)strFilePath

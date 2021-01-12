@@ -59,7 +59,7 @@
 {
 	free(_paramId);
 	free(_paramInfo);
-	
+	/*
 	[_audioUnitDelay release];
 	[_audioUnitDistortion release];
 	[_audioUnitEq release];
@@ -72,6 +72,7 @@
 	[_audioEngine release];
 	
 	[super dealloc];
+	*/
 }
 
 - (OSStatus)initAVAudio:(NSString *)strFilePath

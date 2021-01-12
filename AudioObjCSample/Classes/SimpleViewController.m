@@ -56,7 +56,7 @@
 	CGFloat fWidth = [[UIScreen mainScreen] bounds].size.width;
 	CGFloat fHeight = [[UIScreen mainScreen] bounds].size.height;
 	
-	_buttonPlay = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+	_buttonPlay = [UIButton buttonWithType:UIButtonTypeCustom];
 	_buttonPlay.frame = CGRectMake((fWidth - 120.0) * 0.5, fHeight - 100.0, 120.0, 60.0);
 	[_buttonPlay setTitle:@"Start" forState:UIControlStateNormal];
 	[_buttonPlay addTarget:self action:@selector(buttonPlayAct:) forControlEvents:UIControlEventTouchUpInside];
@@ -88,13 +88,13 @@
 
 - (void)dealloc
 {
-	[_audioIO release];
+//	[_audioIO release];
 	
 	[self setAudioSessionInActive];
 	
-	[_buttonPlay release];
+//	[_buttonPlay release];
 	
-	[super dealloc];
+//	[super dealloc];
 }
 
 #pragma mark -

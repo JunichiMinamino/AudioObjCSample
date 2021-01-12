@@ -56,7 +56,7 @@
 	CGFloat fWidth = [[UIScreen mainScreen] bounds].size.width;
 	CGFloat fHeight = [[UIScreen mainScreen] bounds].size.height;
 	
-	_buttonPlay = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+	_buttonPlay = [UIButton buttonWithType:UIButtonTypeCustom];
 	_buttonPlay.frame = CGRectMake(fWidth - 120.0, fHeight - 90.0, 100.0, 40.0);
 	[_buttonPlay setTitle:@"Start" forState:UIControlStateNormal];
 	[_buttonPlay addTarget:self action:@selector(buttonPlayAct:) forControlEvents:UIControlEventTouchUpInside];
@@ -84,14 +84,12 @@
 		labelParam[i].frame = CGRectMake(20.0, 80.0 + 85.0 * i, fWidth - 40.0, 30.0);
 		labelParam[i].textColor = [UIColor whiteColor];
 		[self.view addSubview:labelParam[i]];
-		[labelParam[i] release];
 		
 		sliderParam[i] = [[UISlider alloc] init];
 		sliderParam[i].tag = 1000 + i;
 		sliderParam[i].frame = CGRectMake(30.0, 110.0 + 85.0 * i, fWidth - 60.0, 40.0);
 		[sliderParam[i] addTarget:self action:@selector(sliderParamChanged:) forControlEvents:UIControlEventValueChanged];
 		[self.view addSubview:sliderParam[i]];
-		[sliderParam[i] release];
 	}
 	
 	// パラメータ名、スライダーの範囲、初期位置をセット
@@ -112,13 +110,13 @@
 
 - (void)dealloc
 {
-	[_audioIO release];
+//	[_audioIO release];
 	
 	[self setAudioSessionInActive];
 	
-	[_buttonPlay release];
+//	[_buttonPlay release];
 	
-	[super dealloc];
+//	[super dealloc];
 }
 
 #pragma mark -

@@ -82,7 +82,7 @@ static AudioStreamBasicDescription AUCanonicalASBD(Float64 sampleRate, UInt32 ch
 	[self releaseAUGraph];
 	[self releaseAudioFile];
 	
-	[super dealloc];
+//	[super dealloc];
 }
 
 static 
@@ -94,7 +94,7 @@ OSStatus renderCallback(void *inRefCon,
 						AudioBufferList *ioData)
 {
 	OSStatus ret = noErr;
-	EffectAudioIO *def = (EffectAudioIO *)inRefCon;
+	EffectAudioIO *def = (__bridge EffectAudioIO *)inRefCon;
  
 	UInt32 ioNumberFrames = inNumberFrames;
 	// オーディオファイルのデータを読み込み、バッファ（ioData）にコピー
@@ -124,7 +124,7 @@ OSStatus renderCallback(void *inRefCon,
 	OSStatus ret = noErr;
 	
 	// ExAudioFileの作成
-	ret = ExtAudioFileOpenURL((CFURLRef)fileURL, &_extAudioFile);
+	ret = ExtAudioFileOpenURL((__bridge CFURLRef)fileURL, &_extAudioFile);
 	if (checkError(ret, "ExtAudioFileOpenURL")) return -1;
 	
 	// ファイルフォーマットを取得
@@ -206,7 +206,7 @@ OSStatus renderCallback(void *inRefCon,
 	// Callbackの作成
 	AURenderCallbackStruct callbackStruct;
 	callbackStruct.inputProc = renderCallback;
-	callbackStruct.inputProcRefCon = self;
+	callbackStruct.inputProcRefCon = (__bridge void * _Nullable)(self);
 	AUGraphSetNodeInputCallback(_graph,
 								converterNode,
 								0,  // bus number
