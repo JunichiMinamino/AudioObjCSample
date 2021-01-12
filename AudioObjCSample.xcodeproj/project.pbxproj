@@ -7,28 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC248A4925ADEF7800D72454 /* TimePitchAudioIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC248A3125ADEF7800D72454 /* TimePitchAudioIO.m */; };
+		BC248A4A25ADEF7800D72454 /* TimePitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC248A3325ADEF7800D72454 /* TimePitchViewController.m */; };
+		BC248A4B25ADEF7800D72454 /* SimpleAudioIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC248A3625ADEF7800D72454 /* SimpleAudioIO.m */; };
+		BC248A4C25ADEF7800D72454 /* SimpleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC248A3725ADEF7800D72454 /* SimpleViewController.m */; };
+		BC248A4D25ADEF7800D72454 /* EffectAudioIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC248A3D25ADEF7800D72454 /* EffectAudioIO.m */; };
+		BC248A4E25ADEF7800D72454 /* EffectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC248A3E25ADEF7800D72454 /* EffectViewController.m */; };
+		BC248A4F25ADEF7800D72454 /* AudioEngineIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC248A4225ADEF7800D72454 /* AudioEngineIO.m */; };
+		BC248A5025ADEF7800D72454 /* AudioEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC248A4325ADEF7800D72454 /* AudioEngineViewController.m */; };
+		BC248A5125ADEF7800D72454 /* TimeStretchAudioIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC248A4725ADEF7800D72454 /* TimeStretchAudioIO.m */; };
+		BC248A5225ADEF7800D72454 /* TimeStretchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC248A4825ADEF7800D72454 /* TimeStretchViewController.m */; };
 		BC8F665C1C7F273900FEFE89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F665B1C7F273900FEFE89 /* main.m */; };
 		BC8F66651C7F273900FEFE89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC8F66631C7F273900FEFE89 /* Main.storyboard */; };
 		BC8F66671C7F273900FEFE89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC8F66661C7F273900FEFE89 /* Assets.xcassets */; };
 		BC8F666A1C7F273900FEFE89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC8F66681C7F273900FEFE89 /* LaunchScreen.storyboard */; };
 		BC8F66761C7F279200FEFE89 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F66731C7F279200FEFE89 /* AppDelegate.m */; };
 		BC8F66771C7F279200FEFE89 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F66751C7F279200FEFE89 /* ViewController.m */; };
-		BC8F667B1C7F29F000FEFE89 /* SimpleAudioIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F667A1C7F29F000FEFE89 /* SimpleAudioIO.m */; };
-		BC8F667E1C7F2AFA00FEFE89 /* SimpleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F667D1C7F2AFA00FEFE89 /* SimpleViewController.m */; };
 		BC8F66811C7F2EC000FEFE89 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC8F667F1C7F2EC000FEFE89 /* AudioToolbox.framework */; };
 		BC8F66821C7F2EC000FEFE89 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC8F66801C7F2EC000FEFE89 /* AVFoundation.framework */; };
 		BC8F66871C7F4B5C00FEFE89 /* sample.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BC8F66861C7F4B5C00FEFE89 /* sample.mp3 */; };
-		BC8F668C1C7FD3D000FEFE89 /* TimeStretchAudioIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F66891C7FD3D000FEFE89 /* TimeStretchAudioIO.m */; };
-		BC8F668D1C7FD3D000FEFE89 /* TimeStretchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F668B1C7FD3D000FEFE89 /* TimeStretchViewController.m */; };
-		BC8F66921C82A77A00FEFE89 /* EffectAudioIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F668F1C82A77A00FEFE89 /* EffectAudioIO.m */; };
-		BC8F66931C82A77A00FEFE89 /* EffectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F66911C82A77A00FEFE89 /* EffectViewController.m */; };
-		BC8F66981C845EBE00FEFE89 /* AudioEngineIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F66951C845EBE00FEFE89 /* AudioEngineIO.m */; };
-		BC8F66991C845EBE00FEFE89 /* AudioEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8F66971C845EBE00FEFE89 /* AudioEngineViewController.m */; };
-		BCA4329621EB7029008ACF18 /* TimePitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA4329221EB7028008ACF18 /* TimePitchViewController.m */; };
-		BCA4329721EB7029008ACF18 /* TimePitchAudioIO.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA4329421EB7029008ACF18 /* TimePitchAudioIO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC248A3125ADEF7800D72454 /* TimePitchAudioIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePitchAudioIO.m; sourceTree = "<group>"; };
+		BC248A3225ADEF7800D72454 /* TimePitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePitchViewController.h; sourceTree = "<group>"; };
+		BC248A3325ADEF7800D72454 /* TimePitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePitchViewController.m; sourceTree = "<group>"; };
+		BC248A3425ADEF7800D72454 /* TimePitchAudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePitchAudioIO.h; sourceTree = "<group>"; };
+		BC248A3625ADEF7800D72454 /* SimpleAudioIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioIO.m; sourceTree = "<group>"; };
+		BC248A3725ADEF7800D72454 /* SimpleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleViewController.m; sourceTree = "<group>"; };
+		BC248A3825ADEF7800D72454 /* SimpleAudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAudioIO.h; sourceTree = "<group>"; };
+		BC248A3925ADEF7800D72454 /* SimpleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleViewController.h; sourceTree = "<group>"; };
+		BC248A3B25ADEF7800D72454 /* EffectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectViewController.h; sourceTree = "<group>"; };
+		BC248A3C25ADEF7800D72454 /* EffectAudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectAudioIO.h; sourceTree = "<group>"; };
+		BC248A3D25ADEF7800D72454 /* EffectAudioIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectAudioIO.m; sourceTree = "<group>"; };
+		BC248A3E25ADEF7800D72454 /* EffectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectViewController.m; sourceTree = "<group>"; };
+		BC248A4025ADEF7800D72454 /* AudioEngineIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEngineIO.h; sourceTree = "<group>"; };
+		BC248A4125ADEF7800D72454 /* AudioEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEngineViewController.h; sourceTree = "<group>"; };
+		BC248A4225ADEF7800D72454 /* AudioEngineIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEngineIO.m; sourceTree = "<group>"; };
+		BC248A4325ADEF7800D72454 /* AudioEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEngineViewController.m; sourceTree = "<group>"; };
+		BC248A4525ADEF7800D72454 /* TimeStretchAudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeStretchAudioIO.h; sourceTree = "<group>"; };
+		BC248A4625ADEF7800D72454 /* TimeStretchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeStretchViewController.h; sourceTree = "<group>"; };
+		BC248A4725ADEF7800D72454 /* TimeStretchAudioIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeStretchAudioIO.m; sourceTree = "<group>"; };
+		BC248A4825ADEF7800D72454 /* TimeStretchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeStretchViewController.m; sourceTree = "<group>"; };
 		BC8F66571C7F273900FEFE89 /* AudioObjCSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioObjCSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8F665B1C7F273900FEFE89 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BC8F66641C7F273900FEFE89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,29 +60,9 @@
 		BC8F66741C7F279200FEFE89 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		BC8F66751C7F279200FEFE89 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		BC8F66781C7F290E00FEFE89 /* AudioObjCSample-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AudioObjCSample-Prefix.pch"; sourceTree = "<group>"; };
-		BC8F66791C7F29F000FEFE89 /* SimpleAudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAudioIO.h; sourceTree = "<group>"; };
-		BC8F667A1C7F29F000FEFE89 /* SimpleAudioIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioIO.m; sourceTree = "<group>"; };
-		BC8F667C1C7F2AFA00FEFE89 /* SimpleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleViewController.h; sourceTree = "<group>"; };
-		BC8F667D1C7F2AFA00FEFE89 /* SimpleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleViewController.m; sourceTree = "<group>"; };
 		BC8F667F1C7F2EC000FEFE89 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BC8F66801C7F2EC000FEFE89 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BC8F66861C7F4B5C00FEFE89 /* sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sample.mp3; sourceTree = "<group>"; };
-		BC8F66881C7FD3D000FEFE89 /* TimeStretchAudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeStretchAudioIO.h; sourceTree = "<group>"; };
-		BC8F66891C7FD3D000FEFE89 /* TimeStretchAudioIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeStretchAudioIO.m; sourceTree = "<group>"; };
-		BC8F668A1C7FD3D000FEFE89 /* TimeStretchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeStretchViewController.h; sourceTree = "<group>"; };
-		BC8F668B1C7FD3D000FEFE89 /* TimeStretchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeStretchViewController.m; sourceTree = "<group>"; };
-		BC8F668E1C82A77A00FEFE89 /* EffectAudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectAudioIO.h; sourceTree = "<group>"; };
-		BC8F668F1C82A77A00FEFE89 /* EffectAudioIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectAudioIO.m; sourceTree = "<group>"; };
-		BC8F66901C82A77A00FEFE89 /* EffectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectViewController.h; sourceTree = "<group>"; };
-		BC8F66911C82A77A00FEFE89 /* EffectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectViewController.m; sourceTree = "<group>"; };
-		BC8F66941C845EBE00FEFE89 /* AudioEngineIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEngineIO.h; sourceTree = "<group>"; };
-		BC8F66951C845EBE00FEFE89 /* AudioEngineIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEngineIO.m; sourceTree = "<group>"; };
-		BC8F66961C845EBE00FEFE89 /* AudioEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEngineViewController.h; sourceTree = "<group>"; };
-		BC8F66971C845EBE00FEFE89 /* AudioEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEngineViewController.m; sourceTree = "<group>"; };
-		BCA4329221EB7028008ACF18 /* TimePitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePitchViewController.m; sourceTree = "<group>"; };
-		BCA4329321EB7028008ACF18 /* TimePitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePitchViewController.h; sourceTree = "<group>"; };
-		BCA4329421EB7029008ACF18 /* TimePitchAudioIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePitchAudioIO.m; sourceTree = "<group>"; };
-		BCA4329521EB7029008ACF18 /* TimePitchAudioIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePitchAudioIO.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +78,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC248A3025ADEF7800D72454 /* TimePitch */ = {
+			isa = PBXGroup;
+			children = (
+				BC248A3125ADEF7800D72454 /* TimePitchAudioIO.m */,
+				BC248A3225ADEF7800D72454 /* TimePitchViewController.h */,
+				BC248A3325ADEF7800D72454 /* TimePitchViewController.m */,
+				BC248A3425ADEF7800D72454 /* TimePitchAudioIO.h */,
+			);
+			path = TimePitch;
+			sourceTree = "<group>";
+		};
+		BC248A3525ADEF7800D72454 /* Simple */ = {
+			isa = PBXGroup;
+			children = (
+				BC248A3625ADEF7800D72454 /* SimpleAudioIO.m */,
+				BC248A3725ADEF7800D72454 /* SimpleViewController.m */,
+				BC248A3825ADEF7800D72454 /* SimpleAudioIO.h */,
+				BC248A3925ADEF7800D72454 /* SimpleViewController.h */,
+			);
+			path = Simple;
+			sourceTree = "<group>";
+		};
+		BC248A3A25ADEF7800D72454 /* Effect */ = {
+			isa = PBXGroup;
+			children = (
+				BC248A3B25ADEF7800D72454 /* EffectViewController.h */,
+				BC248A3C25ADEF7800D72454 /* EffectAudioIO.h */,
+				BC248A3D25ADEF7800D72454 /* EffectAudioIO.m */,
+				BC248A3E25ADEF7800D72454 /* EffectViewController.m */,
+			);
+			path = Effect;
+			sourceTree = "<group>";
+		};
+		BC248A3F25ADEF7800D72454 /* AudioEngine */ = {
+			isa = PBXGroup;
+			children = (
+				BC248A4025ADEF7800D72454 /* AudioEngineIO.h */,
+				BC248A4125ADEF7800D72454 /* AudioEngineViewController.h */,
+				BC248A4225ADEF7800D72454 /* AudioEngineIO.m */,
+				BC248A4325ADEF7800D72454 /* AudioEngineViewController.m */,
+			);
+			path = AudioEngine;
+			sourceTree = "<group>";
+		};
+		BC248A4425ADEF7800D72454 /* TimeStretch */ = {
+			isa = PBXGroup;
+			children = (
+				BC248A4525ADEF7800D72454 /* TimeStretchAudioIO.h */,
+				BC248A4625ADEF7800D72454 /* TimeStretchViewController.h */,
+				BC248A4725ADEF7800D72454 /* TimeStretchAudioIO.m */,
+				BC248A4825ADEF7800D72454 /* TimeStretchViewController.m */,
+			);
+			path = TimeStretch;
+			sourceTree = "<group>";
+		};
 		BC8F664E1C7F273900FEFE89 = {
 			isa = PBXGroup;
 			children = (
@@ -125,26 +180,11 @@
 				BC8F66731C7F279200FEFE89 /* AppDelegate.m */,
 				BC8F66741C7F279200FEFE89 /* ViewController.h */,
 				BC8F66751C7F279200FEFE89 /* ViewController.m */,
-				BC8F667C1C7F2AFA00FEFE89 /* SimpleViewController.h */,
-				BC8F667D1C7F2AFA00FEFE89 /* SimpleViewController.m */,
-				BC8F66791C7F29F000FEFE89 /* SimpleAudioIO.h */,
-				BC8F667A1C7F29F000FEFE89 /* SimpleAudioIO.m */,
-				BC8F668A1C7FD3D000FEFE89 /* TimeStretchViewController.h */,
-				BC8F668B1C7FD3D000FEFE89 /* TimeStretchViewController.m */,
-				BC8F66881C7FD3D000FEFE89 /* TimeStretchAudioIO.h */,
-				BC8F66891C7FD3D000FEFE89 /* TimeStretchAudioIO.m */,
-				BC8F66901C82A77A00FEFE89 /* EffectViewController.h */,
-				BC8F66911C82A77A00FEFE89 /* EffectViewController.m */,
-				BC8F668E1C82A77A00FEFE89 /* EffectAudioIO.h */,
-				BC8F668F1C82A77A00FEFE89 /* EffectAudioIO.m */,
-				BC8F66961C845EBE00FEFE89 /* AudioEngineViewController.h */,
-				BC8F66971C845EBE00FEFE89 /* AudioEngineViewController.m */,
-				BC8F66941C845EBE00FEFE89 /* AudioEngineIO.h */,
-				BC8F66951C845EBE00FEFE89 /* AudioEngineIO.m */,
-				BCA4329321EB7028008ACF18 /* TimePitchViewController.h */,
-				BCA4329221EB7028008ACF18 /* TimePitchViewController.m */,
-				BCA4329521EB7029008ACF18 /* TimePitchAudioIO.h */,
-				BCA4329421EB7029008ACF18 /* TimePitchAudioIO.m */,
+				BC248A3F25ADEF7800D72454 /* AudioEngine */,
+				BC248A3A25ADEF7800D72454 /* Effect */,
+				BC248A3525ADEF7800D72454 /* Simple */,
+				BC248A3025ADEF7800D72454 /* TimePitch */,
+				BC248A4425ADEF7800D72454 /* TimeStretch */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -189,6 +229,7 @@
 				TargetAttributes = {
 					BC8F66561C7F273900FEFE89 = {
 						CreatedOnToolsVersion = 7.2;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -229,19 +270,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC8F667E1C7F2AFA00FEFE89 /* SimpleViewController.m in Sources */,
-				BC8F66921C82A77A00FEFE89 /* EffectAudioIO.m in Sources */,
 				BC8F66771C7F279200FEFE89 /* ViewController.m in Sources */,
+				BC248A4D25ADEF7800D72454 /* EffectAudioIO.m in Sources */,
 				BC8F66761C7F279200FEFE89 /* AppDelegate.m in Sources */,
-				BC8F66981C845EBE00FEFE89 /* AudioEngineIO.m in Sources */,
-				BC8F667B1C7F29F000FEFE89 /* SimpleAudioIO.m in Sources */,
-				BCA4329621EB7029008ACF18 /* TimePitchViewController.m in Sources */,
-				BC8F66931C82A77A00FEFE89 /* EffectViewController.m in Sources */,
-				BCA4329721EB7029008ACF18 /* TimePitchAudioIO.m in Sources */,
-				BC8F668D1C7FD3D000FEFE89 /* TimeStretchViewController.m in Sources */,
+				BC248A4B25ADEF7800D72454 /* SimpleAudioIO.m in Sources */,
+				BC248A4F25ADEF7800D72454 /* AudioEngineIO.m in Sources */,
+				BC248A5125ADEF7800D72454 /* TimeStretchAudioIO.m in Sources */,
+				BC248A4A25ADEF7800D72454 /* TimePitchViewController.m in Sources */,
+				BC248A4E25ADEF7800D72454 /* EffectViewController.m in Sources */,
+				BC248A4C25ADEF7800D72454 /* SimpleViewController.m in Sources */,
+				BC248A5225ADEF7800D72454 /* TimeStretchViewController.m in Sources */,
+				BC248A4925ADEF7800D72454 /* TimePitchAudioIO.m in Sources */,
 				BC8F665C1C7F273900FEFE89 /* main.m in Sources */,
-				BC8F668C1C7FD3D000FEFE89 /* TimeStretchAudioIO.m in Sources */,
-				BC8F66991C845EBE00FEFE89 /* AudioEngineViewController.m in Sources */,
+				BC248A5025ADEF7800D72454 /* AudioEngineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,12 +419,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "AudioObjCSample/AudioObjCSample-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/AudioObjCSample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loopsessions.AudioObjCSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -393,12 +437,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "AudioObjCSample/AudioObjCSample-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/AudioObjCSample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loopsessions.AudioObjCSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
