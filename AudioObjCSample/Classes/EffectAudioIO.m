@@ -19,7 +19,8 @@
 	AudioUnit _converterUnit;
 	AudioUnit _effectUnit;
 	
-	AudioUnitParameterID _paramId;
+	UInt32 _numOfParams;
+	AudioUnitParameterID *_paramId;
 	AudioUnitParameterInfo *_paramInfo;
 }
 
@@ -75,6 +76,7 @@ static AudioStreamBasicDescription AUCanonicalASBD(Float64 sampleRate, UInt32 ch
 
 - (void)dealloc
 {
+	free(_paramId);
 	free(_paramInfo);
 	
 	[self releaseAUGraph];
@@ -183,7 +185,8 @@ OSStatus renderCallback(void *inRefCon,
 	AUGraphNodeInfo(_graph, converterNode, NULL, &_converterUnit);
 	
 	cd.componentType = kAudioUnitType_Effect;
-	cd.componentSubType = kAudioUnitSubType_LowPassFilter;
+//	cd.componentSubType = kAudioUnitSubType_LowPassFilter;
+	cd.componentSubType = kAudioUnitSubType_Distortion;
 	cd.componentManufacturer = kAudioUnitManufacturer_Apple;
 	cd.componentFlags = 0;
 	cd.componentFlagsMask = 0;
@@ -328,7 +331,8 @@ OSStatus renderCallback(void *inRefCon,
 	
 	int numOfParams = size / sizeof(AudioUnitParameterID);
 	NSLog(@"numOfParams = %d", numOfParams);
-	
+	_numOfParams = numOfParams;
+
 	// paramList の各IDを取得
 	AudioUnitParameterID paramList[numOfParams];
 	AudioUnitGetProperty(_effectUnit,
@@ -338,11 +342,12 @@ OSStatus renderCallback(void *inRefCon,
 						 paramList,
 						 &size);
 	
+	_paramId = (AudioUnitParameterID *)malloc(numOfParams * sizeof(AudioUnitParameterID));
 	_paramInfo = (AudioUnitParameterInfo *)malloc(numOfParams * sizeof(AudioUnitParameterInfo));
 	
 	for (int i = 0; i < numOfParams; i++) {
 		NSLog(@"paramList[%d] = %d", i, (unsigned int)paramList[i]);
-		_paramId = paramList[i];
+		_paramId[i] = paramList[i];
 		
 		// 各IDのパラメータを取得
 		size = sizeof(_paramInfo[i]);
@@ -368,19 +373,26 @@ OSStatus renderCallback(void *inRefCon,
 	}
 }
 
+- (NSUInteger)getParamNum
+{
+	return _numOfParams;
+}
+
 - (AudioUnitParameterInfo)getParamInfo:(NSInteger)iIndex
 {
 	return _paramInfo[iIndex];
 }
 
-- (Float32)effectRate
+/*
+- (Float32)effectRate:(NSInteger)iIndex
 {
-	return [self valueForParameter:_paramId];
+	return [self valueForParameter:_paramId[iIndex]];
 }
+*/
 
 - (void)setEffectRate:(NSInteger)iIndex value:(Float32)value
 {
-	[self setValue:iIndex value:value forParameter:_paramId min:_paramInfo[iIndex].minValue max:_paramInfo[iIndex].maxValue];
+	[self setValue:iIndex value:value forParameter:_paramId[iIndex] min:_paramInfo[iIndex].minValue max:_paramInfo[iIndex].maxValue];
 }
 
 - (Float32)valueForParameter:(int)parameter

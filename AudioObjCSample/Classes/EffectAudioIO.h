@@ -17,6 +17,7 @@
 - (void)start;
 - (void)stop;
 
+- (NSUInteger)getParamNum;
 - (AudioUnitParameterInfo)getParamInfo:(NSInteger)iIndex;
 - (void)setEffectRate:(NSInteger)iIndex value:(Float32)value;
 

@@ -62,6 +62,7 @@
 	[_buttonPlay addTarget:self action:@selector(buttonPlayAct:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:_buttonPlay];
 	
+	/*
 	UISlider *sliderParam[2];
 	for (int i = 0; i < 2; i++) {
 		sliderParam[i] = [[UISlider alloc] init];
@@ -70,7 +71,7 @@
 		[sliderParam[i] addTarget:self action:@selector(sliderParamChanged:) forControlEvents:UIControlEventValueChanged];
 		[self.view addSubview:sliderParam[i]];
 	}
-
+	*/
 	
 	NSString *strFileName = AUDIO_SAMPLE_FILE_NAME;
 	NSString *strFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], strFileName];
@@ -88,7 +89,7 @@
 		return;
 	}
 	
-	
+	/*
 	// スライダーの範囲、初期位置をセット
 	for (int i = 0; i < 2; i++) {
 		AudioUnitParameterInfo paramInfo = [_audioIO getParamInfo:i];
@@ -96,7 +97,54 @@
 		sliderParam[i].maximumValue = paramInfo.maxValue;
 		sliderParam[i].value = paramInfo.defaultValue;
 	}
+	*/
 	
+	NSInteger iParamNum = [_audioIO getParamNum];
+	
+	UILabel *labelParam[iParamNum];
+	UISlider *sliderParam[iParamNum];
+	for (int i = 0; i < iParamNum; i++) {
+		labelParam[i] = [[UILabel alloc] init];
+		if (iParamNum > 8) {
+			if (i < 8) {
+				labelParam[i].frame = CGRectMake(20.0, 80.0 + 75.0 * i, fWidth * 0.5 - 40.0, 30.0);
+			} else {
+				labelParam[i].frame = CGRectMake(fWidth * 0.5 + 20.0, 80.0 + 75.0 * (i - 8), fWidth * 0.5 - 40.0, 30.0);
+			}
+		} else {
+			labelParam[i].frame = CGRectMake(20.0, 80.0 + 75.0 * i, fWidth - 40.0, 30.0);
+		}
+		labelParam[i].textColor = [UIColor whiteColor];
+		[self.view addSubview:labelParam[i]];
+		[labelParam[i] release];
+		
+		sliderParam[i] = [[UISlider alloc] init];
+		sliderParam[i].tag = 1000 + i;
+		if (iParamNum > 8) {
+			if (i < 8) {
+				sliderParam[i].frame = CGRectMake(30.0, 110.0 + 75.0 * i, fWidth * 0.5 - 60.0, 40.0);
+			} else {
+				sliderParam[i].frame = CGRectMake(fWidth * 0.5 + 30.0, 110.0 + 75.0 * (i - 8), fWidth * 0.5 - 60.0, 40.0);
+			}
+		} else {
+			sliderParam[i].frame = CGRectMake(30.0, 110.0 + 75.0 * i, fWidth - 60.0, 40.0);
+		}
+		[sliderParam[i] addTarget:self action:@selector(sliderParamChanged:) forControlEvents:UIControlEventValueChanged];
+		[self.view addSubview:sliderParam[i]];
+		[sliderParam[i] release];
+	}
+	
+	// パラメータ名、スライダーの範囲、初期位置をセット
+	for (int i = 0; i < iParamNum; i++) {
+		AudioUnitParameterInfo paramInfo = [_audioIO getParamInfo:i];
+		
+		labelParam[i].text = [NSString stringWithCString:paramInfo.name encoding:NSUTF8StringEncoding];
+		
+		sliderParam[i].minimumValue = paramInfo.minValue;
+		sliderParam[i].maximumValue = paramInfo.maxValue;
+		sliderParam[i].value = paramInfo.defaultValue;
+	}
+
 }
 
 - (void)didReceiveMemoryWarning {
