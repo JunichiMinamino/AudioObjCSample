@@ -11,9 +11,10 @@
 @interface SimpleAudioIO : NSObject
 
 - (SInt64)initAudioFile:(NSURL *)fileURL;
-- (OSStatus)initAUGraph;
+//- (OSStatus)initAUGraph;
+- (OSStatus)initAudioUnit;
 
-- (Boolean)isRunning;
+//- (Boolean)isRunning;
 - (void)start;
 - (void)stop;
 

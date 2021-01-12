@@ -14,9 +14,12 @@
 {
 	AudioStreamBasicDescription _outputFormat;
 	
-	AUGraph _graph;
-	AudioUnit _remoteIOUnit;
-	AudioUnit _converterUnit;
+//	AUGraph _graph;
+//	AudioUnit _remoteIOUnit;
+//	AudioUnit _converterUnit;
+	AudioUnit _audioUnit;
+	
+	BOOL _isPlaying;
 }
 
 @property (readonly) ExtAudioFileRef extAudioFile;
@@ -60,10 +63,14 @@ static AudioStreamBasicDescription AUCanonicalASBD(Float64 sampleRate, UInt32 ch
 {
 	self = [super init];
 	if (self) {
-		_extAudioFile = NULL;
+		_extAudioFile = nil;
+		_audioUnit = nil;
+		/*
 		_graph = NULL;
 		_remoteIOUnit = NULL;
 		_converterUnit = NULL;
+		*/
+		_isPlaying = NO;
 	}
 	return self;
 }
@@ -155,6 +162,7 @@ OSStatus renderCallback(void *inRefCon,
 	return fileLengthFrames;
 }
 
+/*
 - (OSStatus)initAUGraph
 {
 	OSStatus ret = noErr;
@@ -229,6 +237,46 @@ OSStatus renderCallback(void *inRefCon,
 	
 	return ret;
 }
+*/
+
+- (OSStatus)initAudioUnit
+{
+	OSStatus ret = noErr;
+
+	AudioComponentDescription cd;
+	cd.componentType = kAudioUnitType_Output;
+	cd.componentSubType = kAudioUnitSubType_RemoteIO;
+	cd.componentManufacturer = kAudioUnitManufacturer_Apple;
+	cd.componentFlags = 0;
+	cd.componentFlagsMask = 0;
+	
+	AudioComponent component = AudioComponentFindNext(NULL, &cd);
+	AudioComponentInstanceNew(component, &_audioUnit);
+	AudioUnitInitialize(_audioUnit);
+	
+	// Callback
+	AURenderCallbackStruct callbackStruct;
+	callbackStruct.inputProc = renderCallback;
+	callbackStruct.inputProcRefCon = self;
+	
+	ret = AudioUnitSetProperty(_audioUnit,
+						 kAudioUnitProperty_SetRenderCallback,
+						 kAudioUnitScope_Input,
+						 0,
+						 &callbackStruct,
+						 sizeof(AURenderCallbackStruct));
+	if (checkError(ret, "AudioUnitSetProperty")) return ret;
+
+	ret = AudioUnitSetProperty(_audioUnit,
+						 kAudioUnitProperty_StreamFormat,
+						 kAudioUnitScope_Input,
+						 0,
+						 &_outputFormat,
+						 sizeof(AudioStreamBasicDescription));
+	if (checkError(ret, "AudioUnitSetProperty")) return ret;
+	
+	return ret;
+}
 
 - (void)releaseAudioFile
 {
@@ -239,15 +287,22 @@ OSStatus renderCallback(void *inRefCon,
 
 - (void)releaseAUGraph
 {
-	[self stop];
+	/*
 	if(_graph != NULL) {
 		AUGraphUninitialize(_graph);
 		AUGraphClose(_graph);
 		DisposeAUGraph(_graph);
 		_graph = NULL;
 	}
+	*/
+	if (_audioUnit) {
+		[self stop];
+		AudioUnitUninitialize(_audioUnit);
+		AudioComponentInstanceDispose(_audioUnit);
+	}
 }
 
+/*
 - (Boolean)isRunning
 {
 	Boolean isRunning = false;
@@ -257,9 +312,11 @@ OSStatus renderCallback(void *inRefCon,
 	}
 	return isRunning;
 }
+*/
 
 - (void)start
 {
+	/*
 	if (_graph) {
 		Boolean isRunning = false;
 		OSStatus ret = AUGraphIsRunning(_graph, &isRunning);
@@ -268,16 +325,28 @@ OSStatus renderCallback(void *inRefCon,
 			checkError(ret, "AUGraphStart");
 		}
 	}
+	*/
+	if (_audioUnit) {
+		AudioOutputUnitStart(_audioUnit);
+		_isPlaying = YES;
+	}
 }
 
 - (void)stop
 {
+	/*
 	if (_graph) {
 		Boolean isRunning = false;
 		OSStatus ret = AUGraphIsRunning(_graph, &isRunning);
 		if (ret == noErr && isRunning) {
 			ret = AUGraphStop(_graph);
 			checkError(ret, "AUGraphStop");
+		}
+	}
+	*/
+	if (_audioUnit) {
+		if (_isPlaying) {
+			AudioOutputUnitStop(_audioUnit);
 		}
 	}
 }

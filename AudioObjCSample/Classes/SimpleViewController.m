@@ -73,7 +73,8 @@
 		NSLog(@"[Error]It's failed in opening file.");
 		return;
 	}
-	OSStatus ret = [_audioIO initAUGraph];
+//	OSStatus ret = [_audioIO initAUGraph];
+	OSStatus ret = [_audioIO initAudioUnit];
 	if (ret) {
 		NSLog(@"[Error]It's failed in setting audio.");
 		return;
@@ -126,7 +127,8 @@
 - (void)buttonPlayAct:(UIButton *)sender
 {
 	NSArray *arTitle = @[@"Start", @"Stop"];
-	if ([_audioIO isRunning] == false) {
+//	if ([_audioIO isRunning] == false) {
+	if ([((UIButton *)sender).titleLabel.text isEqualToString:arTitle[0]]) {
 		[_audioIO start];
 		[sender setTitle:arTitle[1] forState:UIControlStateNormal];
 	} else {
