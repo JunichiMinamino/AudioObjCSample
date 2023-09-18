@@ -11,8 +11,9 @@
 #import "TimeStretchViewController.h"
 #import "EffectViewController.h"
 #import "AudioEngineViewController.h"
+#import "ReverbViewController.h"
 #import "TimePitchViewController.h"
-//#import "OfflineRenderViewController.h"
+#import "EnvironmentViewController.h"
 
 @interface ViewController ()
 
@@ -24,16 +25,21 @@
 {
 	[super viewDidLoad];
 	
+	self.view.backgroundColor = [UIColor darkGrayColor];
+	
 	CGFloat fWidth = [[UIScreen mainScreen] bounds].size.width;
 //	CGFloat fHeight = [[UIScreen mainScreen] bounds].size.height;
 	
-	NSArray *arTitle = @[@"Simple", @"Time Stretch", @"Effect", @"AVAudioEngine", @"TimePitch"/*, @"OfflineRender"*/];
+	NSArray *arTitle = @[
+		@"Simple (AudioUnit)", @"Time Stretch (AUGraph)", @"Effect (AUGraph)",
+		@"Simple (AVAudioEngine)", @"Reverb (AVAudioEngine)", @"TimePitch (AVAudioEngine)", @"Environment (AVAudioEngine)",
+	];
 	NSInteger iCount = [arTitle count];
 	UIButton *button[iCount];
 	for (int i = 0; i < iCount; i++) {
 		button[i] = [UIButton buttonWithType:UIButtonTypeCustom];
 		button[i].tag = 1000 + i;
-		button[i].frame = CGRectMake((fWidth - 180.0) * 0.5, 100.0 + 80.0 * i, 180.0, 60.0);
+		button[i].frame = CGRectMake(0.0, 100.0 + 80.0 * i, fWidth, 60.0);
 		[button[i] setTitle:arTitle[i] forState:UIControlStateNormal];
 		[button[i] addTarget:self action:@selector(buttonAct:) forControlEvents:UIControlEventTouchUpInside];
 		[self.view addSubview:button[i]];
@@ -77,30 +83,32 @@
 	NSInteger iIndex = sender.tag - 1000;
 	if (iIndex == 0) {
 		SimpleViewController *viewController = [[SimpleViewController alloc] init];
-		viewController.title = @"Simple";
+		viewController.title = @"Simple(AudioUnit)";
 		[self.navigationController pushViewController:viewController animated:YES];
 	} else if (iIndex == 1) {
 		TimeStretchViewController *viewController = [[TimeStretchViewController alloc] init];
-		viewController.title = @"Time Stretch";
+		viewController.title = @"Time Stretch (AUGraph)";
 		[self.navigationController pushViewController:viewController animated:YES];
 	} else if (iIndex == 2) {
 		EffectViewController *viewController = [[EffectViewController alloc] init];
-		viewController.title = @"Effect";
+		viewController.title = @"Effect (AUGraph)";
 		[self.navigationController pushViewController:viewController animated:YES];
 	} else if (iIndex == 3) {
 		AudioEngineViewController *viewController = [[AudioEngineViewController alloc] init];
-		viewController.title = @"AVAudioEngine";
+		viewController.title = @"Simple (AVAudioEngine)";
 		[self.navigationController pushViewController:viewController animated:YES];
 	} else if (iIndex == 4) {
+		ReverbViewController *viewController = [[ReverbViewController alloc] init];
+		viewController.title = @"Reverb (AVAudioEngine)";
+		[self.navigationController pushViewController:viewController animated:YES];
+	} else if (iIndex == 5) {
 		TimePitchViewController *viewController = [[TimePitchViewController alloc] init];
-		viewController.title = @"TimePitch";
+		viewController.title = @"TimePitch (AVAudioEngine)";
 		[self.navigationController pushViewController:viewController animated:YES];
-	} else {
-		/*
-		OfflineRenderViewController *viewController = [[OfflineRenderViewController alloc] init];
-		viewController.title = @"OfflineRender";
+	} else if (iIndex == 6) {
+		EnvironmentViewController *viewController = [[EnvironmentViewController alloc] init];
+		viewController.title = @"Environment (AVAudioEngine)";
 		[self.navigationController pushViewController:viewController animated:YES];
-		*/
 	}
 }
 

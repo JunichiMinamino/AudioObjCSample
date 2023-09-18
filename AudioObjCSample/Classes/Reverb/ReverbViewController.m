@@ -1,5 +1,5 @@
 //
-//  TimePitchViewController.m
+//  ReverbViewController.m
 //  AUGraphSample
 //
 //  Created by LoopSessions on 2016/02/25.
@@ -7,18 +7,18 @@
 //
 
 #import <AVFoundation/AVFoundation.h>
-#import "TimePitchViewController.h"
-#import "TimePitchAudioIO.h"
+#import "ReverbViewController.h"
+#import "ReverbIO.h"
 
-@interface TimePitchViewController ()
+@interface ReverbViewController ()
 {
-	TimePitchAudioIO *_audioIO;
+	ReverbIO *_audioIO;
 	
 	UIButton *_buttonPlay;
 }
 @end
 
-@implementation TimePitchViewController
+@implementation ReverbViewController
 
 - (id)init
 {
@@ -26,7 +26,7 @@
 	if (self) {
 		[self setAudioSessionActive];
 		
-		_audioIO = [[TimePitchAudioIO alloc] init];
+		_audioIO = [[ReverbIO alloc] init];
 	}
 	return self;
 }
@@ -59,41 +59,15 @@
 	CGFloat fHeight = [[UIScreen mainScreen] bounds].size.height;
 	
 	_buttonPlay = [UIButton buttonWithType:UIButtonTypeCustom];
-	_buttonPlay.frame = CGRectMake((fWidth - 120.0) * 0.5, fHeight - 100.0, 120.0, 60.0);
+	_buttonPlay.frame = CGRectMake(fWidth - 120.0, fHeight - 90.0, 100.0, 40.0);
 	[_buttonPlay setTitle:@"Start" forState:UIControlStateNormal];
 	[_buttonPlay addTarget:self action:@selector(buttonPlayAct:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:_buttonPlay];
+	_buttonPlay.layer.borderColor = [[UIColor whiteColor] CGColor];
+	_buttonPlay.layer.borderWidth = 1.0;
+	_buttonPlay.layer.cornerRadius = 6.0;
+	_buttonPlay.clipsToBounds = YES;
 	
-	/*
-	UISlider *sliderParam = [[UISlider alloc] init];
-	sliderParam.frame = CGRectMake(20.0, 100.0, fWidth - 40.0, 60.0);
-	[sliderParam addTarget:self action:@selector(sliderParamChanged:) forControlEvents:UIControlEventValueChanged];
-	[self.view addSubview:sliderParam];
-	*/
-	/*
-	 Range:      1/32 -> 32.0
-	 Default:    1.0
-	*/
-	UISlider *sliderTimeParam = [[UISlider alloc] init];
-	sliderTimeParam.frame = CGRectMake(20.0, 100.0, fWidth - 40.0, 60.0);
-	sliderTimeParam.minimumValue = 0.5;
-	sliderTimeParam.maximumValue = 2.0;
-	sliderTimeParam.value = 1.0;
-	[sliderTimeParam addTarget:self action:@selector(sliderTimeParamChanged:) forControlEvents:UIControlEventValueChanged];
-	[self.view addSubview:sliderTimeParam];
-	
-	/*
-	 Range:      -2400 -> 2400
-	 Default:    0.0
-	*/
-	UISlider *sliderPitchParam = [[UISlider alloc] init];
-	sliderPitchParam.frame = CGRectMake(20.0, 180.0, fWidth - 40.0, 60.0);
-	sliderPitchParam.minimumValue = -12.0;
-	sliderPitchParam.maximumValue = 12.0;
-	sliderPitchParam.value = 0.0;
-	[sliderPitchParam addTarget:self action:@selector(sliderPitchParamChanged:) forControlEvents:UIControlEventValueChanged];
-	[self.view addSubview:sliderPitchParam];
-
 	
 	NSString *strFileName = AUDIO_SAMPLE_FILE_NAME;
 	NSString *strFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], strFileName];
@@ -103,29 +77,33 @@
 		NSLog(@"[Error]initAVAudio = %d", (int)ret);
 	}
 	
-	/*
-	// スライダーの範囲、初期位置をセット
-	AudioUnitParameterInfo paramInfo = [_audioIO getParamInfo:0];
-	sliderParam.minimumValue = paramInfo.minValue;
-	sliderParam.maximumValue = paramInfo.maxValue;
-	sliderParam.value = paramInfo.defaultValue;
-	*/
+	NSInteger iParamNum = [_audioIO getParamNum];
 	
-}
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-}
-
-- (void)dealloc
-{
-//	[_audioIO release];
+	UILabel *labelParam[iParamNum];
+	UISlider *sliderParam[iParamNum];
+	for (int i = 0; i < iParamNum; i++) {
+		labelParam[i] = [[UILabel alloc] init];
+		labelParam[i].frame = CGRectMake(20.0, 80.0 + 85.0 * i, fWidth - 40.0, 30.0);
+		labelParam[i].textColor = [UIColor whiteColor];
+		[self.view addSubview:labelParam[i]];
+		
+		sliderParam[i] = [[UISlider alloc] init];
+		sliderParam[i].tag = 1000 + i;
+		sliderParam[i].frame = CGRectMake(30.0, 110.0 + 85.0 * i, fWidth - 60.0, 40.0);
+		[sliderParam[i] addTarget:self action:@selector(sliderParamChanged:) forControlEvents:UIControlEventValueChanged];
+		[self.view addSubview:sliderParam[i]];
+	}
 	
-	[self setAudioSessionInActive];
-	
-//	[_buttonPlay release];
-	
-//	[super dealloc];
+	// パラメータ名、スライダーの範囲、初期位置をセット
+	for (int i = 0; i < iParamNum; i++) {
+		AudioUnitParameterInfo paramInfo = [_audioIO getParamInfo:i];
+		
+		labelParam[i].text = [NSString stringWithCString:paramInfo.name encoding:NSUTF8StringEncoding];
+		
+		sliderParam[i].minimumValue = paramInfo.minValue;
+		sliderParam[i].maximumValue = paramInfo.maxValue;
+		sliderParam[i].value = paramInfo.defaultValue;
+	}
 }
 
 #pragma mark -
@@ -167,29 +145,13 @@
 	}
 }
 
-/*
 - (void)sliderParamChanged:(UISlider *)sender
 {
+	NSInteger iIndex = sender.tag - 1000;
+	
 	Float32 fValue = [sender value];
 	
-	[_audioIO setPlaybackRate:fValue];
-}
-*/
-
-- (void)sliderTimeParamChanged:(UISlider *)sender
-{
-	Float32 fValue = [sender value];
-	
-	[_audioIO setTimeParam:fValue];
-}
-
-- (void)sliderPitchParamChanged:(UISlider *)sender
-{
-	Float32 fValue = [sender value];
-	
-	fValue *= 100.0;
-	
-	[_audioIO setPitchParam:fValue];
+	[_audioIO setEffectRate:iIndex value:fValue];
 }
 
 @end
